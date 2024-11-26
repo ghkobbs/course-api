@@ -1,32 +1,42 @@
 package com.tschool.course_api.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Topic {
 
     @Id
-    private String id;
+    @SequenceGenerator(name = "topic_seq", sequenceName = "TOPIC_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "topic_seq")
+    private Integer id;
+    private String identifier;
     private String name;
     private String description;
 
     public Topic() {
     }
 
-    public Topic(String id, String name, String description) {
-//        super();
+    public Topic(int id, String identifier, String name, String description) {
         this.id = id;
+        this.identifier = identifier;
         this.name = name;
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public String getName() {
@@ -45,12 +55,13 @@ public class Topic {
         this.description = description;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Topic{" +
-//                "id='" + id + '\'' +
-//                ", name='" + name + '\'' +
-//                ", description='" + description + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "id='" + id + '\'' +
+                ", identifier='" + identifier + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

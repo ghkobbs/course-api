@@ -1,0 +1,5 @@
+CREATE TABLE topic (
+    id VARCHAR NOT NULL PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    description VARCHAR NOT NULL
+);
